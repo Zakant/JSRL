@@ -2,12 +2,12 @@
 A JavaScript robotic language designed for the LEGO EV3.
 
 ## Content
-- [What is this]
-- [Getting Started]
-- [Who should use]
-- [Features]
-- [Roadmap]
-- [Samples]
+- [What is this] (https://github.com/Zakant/JSRL#what-is-this)
+- [Getting Started] (https://github.com/Zakant/JSRL#getting-started)
+- [Who should use] (https://github.com/Zakant/JSRL#who-shold-use)
+- [Features] (https://github.com/Zakant/JSRL#features)
+- [Roadmap] (https://github.com/Zakant/JSRL#roadmap)
+- [Samples] (https://github.com/Zakant/JSRL#samples)
 
 ## What is this
 This is a programming language that is easy-to-learn yet powerfull and designed for the the LEGO EV3, that offers more options then the standard "block based" language but is way easier to lern then JAVA or a .NET language.

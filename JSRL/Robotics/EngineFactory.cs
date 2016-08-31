@@ -15,6 +15,7 @@ namespace JSRL.Robotics
     public static class EngineFactory
     {
         private static Dictionary<string, object> _rootElements = new Dictionary<string, object>();
+        private static List<Engine> _engines = new List<Engine>();
 
         static EngineFactory()
         {
@@ -46,8 +47,13 @@ namespace JSRL.Robotics
                 engine.SetValue(x.Key, x.Value);
 
             engine.setupThreading().setupIPC();
-
+            _engines.Add(engine);
             return engine;
+        }
+
+        public static void Destroy(this Engine engine)
+        {
+            _engines.Remove(engine);
         }
 
         private static string getName(SensorPort port)

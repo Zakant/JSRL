@@ -25,6 +25,7 @@ namespace JSRL.Robotics.Threading
                 newEngine.SetValue("thread", thread);
 
                 newEngine.Invoke("thread", args, new object[] { });
+                newEngine.Destroy();
             }));
             entry.Thread.Start();
             _threads.Add(entry);

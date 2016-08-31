@@ -11,6 +11,10 @@ namespace JSRL.Robotics.Sensors.Wrapper
     {
         public T Sensor { get; protected set; }
 
+        public int Port => (int)Sensor.Port;
+
+        public string SensorType => Sensor.GetSensorName();
+
         public GenericSensorWrapper(T sensor)
         {
             Sensor = sensor;

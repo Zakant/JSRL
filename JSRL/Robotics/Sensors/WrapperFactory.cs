@@ -38,6 +38,7 @@ namespace JSRL.Robotics.Sensors
 
         public ISensorWrapper CreateWrapper(ISensor sensor)
         {
+            if (sensor == null) return null;
             return _factories[sensor.GetType()].Invoke(sensor);
         }
     }

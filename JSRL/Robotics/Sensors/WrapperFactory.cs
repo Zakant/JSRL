@@ -26,7 +26,8 @@ namespace JSRL.Robotics.Sensors
             var types = ass.GetTypes();
             foreach (var t in types)
             {
-                var attributes = t.GetCustomAttributes(typeof(TargetTypeAttribute), true);
+                var attributes = t.GetCustomAttributes(typeof(TargetTypeAttribute), false);
+
                 if (attributes.Length > 0)
                 {
                     var attribute = (TargetTypeAttribute)attributes[0];
@@ -38,7 +39,7 @@ namespace JSRL.Robotics.Sensors
 
         public ISensorWrapper CreateWrapper(ISensor sensor)
         {
-            if (sensor == null) return null;
+            if (sensor == null || sensor is NoSensor) return null;
             return _factories[sensor.GetType()].Invoke(sensor);
         }
     }

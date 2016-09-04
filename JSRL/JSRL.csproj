@@ -222,6 +222,12 @@
     <Compile Include="Jint\Runtime\StatementsCountOverflowException.cs" />
     <Compile Include="Jint\Runtime\TypeConverter.cs" />
     <Compile Include="Jint\StrictModeScope.cs" />
+    <Compile Include="MonoBrickFirmware\Display\Dialogs\JsrlAboutDialog.cs" />
+    <Compile Include="MonoBrickFirmware\Display\Menus\ItemWithJsrlProgramList.cs" />
+    <Compile Include="MonoBrickFirmware\Display\Menus\JsrlExecuteItem.cs" />
+    <Compile Include="MonoBrickFirmware\Display\Menus\JsrlProgramItem.cs" />
+    <Compile Include="MonoBrickFirmware\FileSystem\JsrlProgram.cs" />
+    <Compile Include="MonoBrickFirmware\FileSystem\JsrlProgramManager.cs" />
     <Compile Include="Robotics\DisplayWrapper.cs" />
     <Compile Include="Robotics\EngineFactory.cs" />
     <Compile Include="Robotics\HelperFunctions.cs" />
@@ -244,10 +250,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Samples\MotorSample.js" />
-    <Content Include="Samples\Threading.js" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

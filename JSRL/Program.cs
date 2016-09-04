@@ -7,50 +7,54 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using MonoBrickFirmware.Display;
+using MonoBrickFirmware.Display.Animation;
+using MonoBrickFirmware.Display.Dialogs;
+using MonoBrickFirmware.Display.Menus;
+using MonoBrickFirmware.FileSystem;
 
 namespace JSRL
 {
     class Program
     {
+        static MenuContainer container;
+        static Menu mainMenu = new Menu("JSRL");
+
         static void Main(string[] args)
         {
-            string program = @"
-                MotorA.On(100);
-                MotorB.On(100);
-                Delay(1000);
-                MotorA.Off();
-                MotorB.Off();
-            ";
+            Startup(); // Startup the engine and prepare everything.
 
-            string program2 = @"
-                MotorA.On(-100);
-                MotorB.On(-100);
-                Delay(1000);
-                MotorA.Off();
-                MotorB.Off();
-            ";
+            // Creating the main manue
+            mainMenu.AddItem(new ItemWithJsrlProgramList());
+            mainMenu.AddItem(new ItemWithDialog<JsrlAboutDialog>(new JsrlAboutDialog(), "About"));
+            mainMenu.AddItem(new ItemWithTurnOff());
 
-            Stopwatch sw1 = new Stopwatch();
-            sw1.Start();
-            var engine = EngineFactory.CreateEngine();
-            sw1.Stop();
-            Console.WriteLine($"Creation: {sw1.ElapsedMilliseconds}");
-            sw1.Reset();
-            sw1.Start();
-            engine.Execute(program);
-            sw1.Stop();
-            Console.WriteLine($"Execution: {sw1.ElapsedMilliseconds}");
+            container = new MenuContainer(mainMenu);
+            container.Show(true);
 
-            sw1.Reset();
-            sw1.Start();
-            var engine2 = EngineFactory.CreateEngine();
-            sw1.Stop();
-            Console.WriteLine($"Creation: {sw1.ElapsedMilliseconds}");
-            sw1.Reset();
-            sw1.Start();
-            engine2.Execute(program2);
-            sw1.Stop();
-            Console.WriteLine($"Execution: {sw1.ElapsedMilliseconds}");
+        }
+
+        public static void Startup()
+        {
+            Lcd.Clear();
+            Lcd.WriteTextBox(Font.MediumFont, new Rectangle(new Point(0, Lcd.Height / 3), new Point(Lcd.Width, Lcd.Height / 2)), "Starting JSRL", true, Lcd.Alignment.Center);
+            Lcd.WriteTextBox(Font.SmallFont, new Rectangle(new Point(0, (Lcd.Height / 3) * 2 + 20), new Point(Lcd.Width, Lcd.Height - 1)), "This might take a while!", true, Lcd.Alignment.Center);
+            var startupAnim = new ProgressAnimation(new Rectangle(new Point(20, Lcd.Height / 2 + 10), new Point(Lcd.Width - 20, Lcd.Height / 2 + 20)));
+            startupAnim.Start();
+            Console.WriteLine("Checking if script folder exists...");
+            JsrlProgramManager.Instance.CreateProgramFolder();
+            Console.WriteLine("Done!");
+
+
+            Console.WriteLine("Setting up engine now.. this might take a minute or two!");
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            EngineFactory.CreateEngine().Execute("var a = 42").Destroy();
+            sw.Stop();
+            Console.WriteLine($"Engine ready after {sw.ElapsedMilliseconds}ms!");
+            startupAnim.Stop();
+            Lcd.Clear();
         }
     }
 }

@@ -4,5 +4,5 @@ MotorB.On(100);
 
 Delay(2000);
 
-MotorA.Off(100);
-MotorB.Off(100);
+MotorA.Off();
+MotorB.Off();

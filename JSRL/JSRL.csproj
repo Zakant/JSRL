@@ -248,6 +248,8 @@
     <Compile Include="Robotics\Threading\IPCHelper.cs" />
     <Compile Include="Robotics\Threading\ThreadingEntry.cs" />
     <Compile Include="Robotics\Threading\ThreadingHelper.cs" />
+    <Compile Include="Robotics\UserInput\Buttons.cs" />
+    <Compile Include="Robotics\UserInput\ButtonTypes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

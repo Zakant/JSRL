@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JSRL.Robotics.UserInput;
 
 namespace JSRL.Robotics
 {
@@ -71,11 +72,13 @@ namespace JSRL.Robotics
         public static Engine CreateEngine()
         {
             var engine = new Engine(cfg => cfg.AllowClr(typeof(Motor).Assembly).Strict());
+            var buttons = new Buttons();
 
             foreach (var x in _rootElements)
                 engine.SetValue(x.Key, x.Value);
 
             engine.setupThreading().setupIPC();
+            engine.SetValue("Buttons", buttons);
             _engines.Add(engine);
 
             return engine;
@@ -90,6 +93,7 @@ namespace JSRL.Robotics
         public static void Destroy(this Engine engine)
         {
             _engines.Remove(engine);
+            engine.GetValue("Buttons").AsObject().Get("Dispose").Invoke(); // Call Dispose of Buttons class
         }
 
         private static string getName(SensorPort port)

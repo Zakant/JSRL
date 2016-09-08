@@ -13,7 +13,23 @@ namespace JSRL.Helper
             int i = 0;
             while (true)
             {
-                string testPath = Path.Combine(folder, $"{suffix}_{programName}_{suffix}_{i}.log");
+                StringBuilder sb = new StringBuilder();
+                if (!String.IsNullOrWhiteSpace(prefix))
+                {
+                    sb.Append(prefix);
+                    sb.Append("_");
+                }
+                sb.Append(programName);
+                sb.Append("_");
+                if (!String.IsNullOrWhiteSpace(suffix))
+                {
+                    sb.Append(suffix);
+                    sb.Append("_");
+                }
+                sb.Append(i);
+                sb.Append(".log");
+
+                string testPath = sb.ToString();
                 if (!File.Exists(testPath)) return testPath;
                 i++;
             }

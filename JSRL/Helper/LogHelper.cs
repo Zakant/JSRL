@@ -29,7 +29,7 @@ namespace JSRL.Helper
                 sb.Append(i);
                 sb.Append(".log");
 
-                string testPath = sb.ToString();
+                string testPath = Path.Combine(folder, sb.ToString());
                 if (!File.Exists(testPath)) return testPath;
                 i++;
             }

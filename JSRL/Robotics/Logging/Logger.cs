@@ -13,7 +13,6 @@ namespace JSRL.Robotics.Logging
         const string LogPath = "/home/root/jsrl/logs";
 
         public string Name { get; }
-        public DateTime StartTime { get; } = DateTime.UtcNow;
 
         private FileStream _fs;
         private StreamWriter _w;
@@ -21,9 +20,9 @@ namespace JSRL.Robotics.Logging
         private Logger(string name)
         {
             Name = name;
-            DateTime now = DateTime.UtcNow;
 
             string path = LogHelper.getLogPath(LogPath, name);
+            Console.WriteLine($"Logger created for {name} with log file: {path}");
             _fs = new FileStream(path, FileMode.Create);
             _w = new StreamWriter(_fs);
         }

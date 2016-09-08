@@ -24,31 +24,31 @@ namespace JSRL.Robotics
             foreach (var entry in new[] { SensorPort.In1, SensorPort.In2, SensorPort.In3, SensorPort.In4 }) // Sensor objects
                 _rootElements.Add(getName(entry), WrapperFactory.Instance.CreateWrapper(SensorFactory.GetSensor(entry)));
 
-            //_listener = new SensorListner();
-            //_listener.SensorAttached += (sensor) =>
-            //{
-            //    var instance = WrapperFactory.Instance.CreateWrapper(sensor);
-            //    var name = getName(sensor.Port);
-            //    _rootElements[name] = instance;
-            //    foreach (var e in _engines)
-            //    {
-            //        e.SetValue(name, instance);
-            //        e.GetValue("sensorAttached").Invoke(e.GetValue(name));
-            //    }
-            //};
+            _listener = new SensorListner();
+            _listener.SensorAttached += (sensor) =>
+            {
+                var instance = WrapperFactory.Instance.CreateWrapper(sensor);
+                var name = getName(sensor.Port);
+                _rootElements[name] = instance;
+                foreach (var e in _engines)
+                {
+                    e.SetValue(name, instance);
+                    e.GetValue("sensorAttached").Invoke(e.GetValue(name));
+                }
+            };
 
-            //_listener.SensorDetached += (sensor) =>
-            //{
+            _listener.SensorDetached += (sensor) =>
+            {
 
-            //    var name = getName(sensor);
-            //    _rootElements[name] = null;
-            //    foreach (var e in _engines)
-            //    {
-            //        var old = e.GetValue(name);
-            //        e.SetValue(name, "undefined");
-            //        e.GetValue("sensorDetached").Invoke(name, old);
-            //    }
-            //};
+                var name = getName(sensor);
+                _rootElements[name] = null;
+                foreach (var e in _engines)
+                {
+                    var old = e.GetValue(name);
+                    e.SetValue(name, "undefined");
+                    e.GetValue("sensorDetached").Invoke(name, old);
+                }
+            };
 
             // All motors
             _rootElements.Add("MotorA", new MotorWrapper(MotorPort.OutA));

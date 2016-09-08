@@ -1,4 +1,5 @@
-﻿using JSRL.Robotics;
+﻿using JSRL.Robotics.Debugger;
+using JSRL.Robotics;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -56,12 +57,16 @@ namespace MonoBrickFirmware.FileSystem
             try
             {
                 string code = File.ReadAllText(program.Path);
+                if (JsrlDebugger.Instance.isAttached)
+                    JsrlDebugger.Instance.prepareEngine(engine);
                 engine.Execute(code); // Running the program here
             }
             catch (Exception ex)
             {
                 exception = ex;
+                JsrlDebugger.Instance.SendException(ex);
                 LogException(program, ex);
+
             }
             finally
             {

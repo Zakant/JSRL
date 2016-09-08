@@ -1,4 +1,5 @@
 ﻿using Jint;
+using JSRL.Helper;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,7 +22,8 @@ namespace JSRL.Robotics.Logging
         {
             Name = name;
             DateTime now = DateTime.UtcNow;
-            string path = Path.Combine(LogPath, $"{Name}_{now.ToShortTimeString()}_{now.ToShortDateString()}.log");
+
+            string path = LogHelper.getLogPath(LogPath, name);
             _fs = new FileStream(path, FileMode.Create);
             _w = new StreamWriter(_fs);
         }

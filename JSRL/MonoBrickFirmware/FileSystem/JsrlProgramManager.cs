@@ -1,4 +1,5 @@
-﻿using JSRL.Robotics;
+﻿using JSRL.Helper;
+using JSRL.Robotics;
 using JSRL.Robotics.Logging;
 using System;
 using System.Collections.Generic;
@@ -73,8 +74,7 @@ namespace MonoBrickFirmware.FileSystem
 
         public void LogException(JsrlProgram program, Exception ex)
         {
-            DateTime now = DateTime.UtcNow;
-            string target = Path.Combine(errorPath, $"error_{program.Name}_{now.ToLongTimeString()}_{now.ToShortDateString()}.log");
+            string target = LogHelper.getLogPath(errorPath, program.Name, "error");
             File.WriteAllText(target, $"{ex.ToString()}{Environment.NewLine}{ex.Message}{Environment.NewLine}{ex.StackTrace}");
         }
     }

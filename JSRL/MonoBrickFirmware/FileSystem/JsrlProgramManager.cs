@@ -30,9 +30,7 @@ namespace MonoBrickFirmware.FileSystem
         {
             return Directory.EnumerateFiles(JsrlPath, "*.js").Select(x =>
             {
-                int indexSlash = x.LastIndexOf('/') + 1;
-                int indexDot = x.LastIndexOf('.');
-                return new JsrlProgram(x.Substring(indexSlash, indexDot - indexSlash), x);
+                return JsrlProgram.fromPath(x);
             }).ToList();
         }
 
@@ -68,7 +66,8 @@ namespace MonoBrickFirmware.FileSystem
             finally
             {
                 engine.Destroy();
-                onDone(exception);
+                if (onDone != null)
+                    onDone(exception);
             }
         }
 

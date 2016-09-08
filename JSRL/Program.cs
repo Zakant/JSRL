@@ -25,6 +25,23 @@ namespace JSRL
         {
             Startup(); // Startup the engine and prepare everything.
 
+            if( args.Length > 1)
+            {
+                try
+                {
+                    JsrlProgramManager.Instance.RunProgram(JsrlProgram.fromPath(args[1]) , null);
+                }
+                catch
+                {
+                    throw;
+                }
+                finally
+                {
+                    EngineFactory.Shutdown();
+                }
+                return;
+            }
+
             // Creating the main manue
             mainMenu.AddItem(new ItemWithJsrlProgramList());
             mainMenu.AddItem(new ItemWithDialog<JsrlAboutDialog>(new JsrlAboutDialog(), "About"));

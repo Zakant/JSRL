@@ -81,7 +81,11 @@ namespace JSRL.Robotics
             return engine;
         }
 
-
+        public static void Shutdown()
+        {
+            if (_listener != null)
+                _listener.Dispose();
+        }
 
         public static void Destroy(this Engine engine)
         {

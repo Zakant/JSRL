@@ -46,6 +46,7 @@ namespace JSRL
                 {
                     EngineFactory.Shutdown();
                 }
+                Console.WriteLine("Execution completed!");
                 return;
             }
 

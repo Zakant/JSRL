@@ -70,7 +70,7 @@ namespace JSRL.Robotics
 
         public static Engine CreateEngine()
         {
-            var engine = new Engine(cfg => cfg.AllowClr(typeof(Motor).Assembly));
+            var engine = new Engine(cfg => cfg.AllowClr(typeof(Motor).Assembly).Strict());
 
             foreach (var x in _rootElements)
                 engine.SetValue(x.Key, x.Value);

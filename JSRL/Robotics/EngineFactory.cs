@@ -77,8 +77,11 @@ namespace JSRL.Robotics
 
             engine.setupThreading().setupIPC();
             _engines.Add(engine);
+
             return engine;
         }
+
+
 
         public static void Destroy(this Engine engine)
         {

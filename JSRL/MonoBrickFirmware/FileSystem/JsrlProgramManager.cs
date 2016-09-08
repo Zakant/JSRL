@@ -1,4 +1,5 @@
 ﻿using JSRL.Robotics;
+using JSRL.Robotics.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +11,7 @@ namespace MonoBrickFirmware.FileSystem
     public class JsrlProgramManager
     {
         public const string JsrlPath = "/home/root/jsrl";
-        public const string logPath = "/home/root/jsrl/logs";
+        public const string errorPath = "/home/root/jsrl/logs/errors";
         public const string includePath = "/home/root/jsrl/includes";
 
         public static JsrlProgramManager Instance { get; } = new JsrlProgramManager();
@@ -19,8 +20,8 @@ namespace MonoBrickFirmware.FileSystem
         {
             if (!Directory.Exists(JsrlPath))
                 Directory.CreateDirectory(JsrlPath);
-            if (!Directory.Exists(logPath))
-                Directory.CreateDirectory(logPath);
+            if (!Directory.Exists(errorPath))
+                Directory.CreateDirectory(errorPath);
             if (!Directory.Exists(includePath))
                 Directory.CreateDirectory(includePath);
         }
@@ -53,10 +54,11 @@ namespace MonoBrickFirmware.FileSystem
             // Running the program here
             var engine = EngineFactory.CreateEngine();
             Exception exception = null;
+            DateTime now = DateTime.UtcNow;
             try
             {
                 string code = File.ReadAllText(program.Path);
-                engine.Execute(code); // Running the program here
+                engine.setupLogging(program.Name).Execute(code); // Running the program here
             }
             catch (Exception ex)
             {
@@ -72,7 +74,8 @@ namespace MonoBrickFirmware.FileSystem
 
         public void LogException(JsrlProgram program, Exception ex)
         {
-            string target = Path.Combine(logPath + $"{program.Name}.log");
+            DateTime now = DateTime.UtcNow;
+            string target = Path.Combine(errorPath, $"error_{program.Name}_{now.ToLongTimeString()}_{now.ToShortDateString()}.log");
             File.WriteAllText(target, $"{ex.ToString()}{Environment.NewLine}{ex.Message}{Environment.NewLine}{ex.StackTrace}");
         }
     }

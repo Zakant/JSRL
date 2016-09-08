@@ -15,6 +15,9 @@ namespace JSRL.Robotics.Threading
         public static int StartThread(JsValue thread, JsValue args)
         {
             var newEngine = EngineFactory.CreateEngine();
+            var oldEngine = thread.AsObject().Engine;
+            Logging.LoggingHelper.CopyLogger(oldEngine, newEngine);
+
             var entry = new ThreadingEntry(newEngine, new Thread(() =>
             {
                 if (args.Type == Jint.Runtime.Types.None)

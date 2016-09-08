@@ -9,7 +9,7 @@ namespace JSRL.Robotics.Sensors.Wrapper
     [TargetType(typeof(HiTecCompassSensor))]
     public class HiTecCompassWrapper : GenericSensorWrapper<HiTecCompassSensor>
     {
-        public int Direction() => Sensor.ReadDirection();
+        public int Read() => Sensor.ReadDirection();
 
         public HiTecCompassWrapper(HiTecCompassSensor sensor) : base(sensor)
         {

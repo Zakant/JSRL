@@ -23,13 +23,20 @@ namespace JSRL
 
         static void Main(string[] args)
         {
+            Console.WriteLine("JSRL - Version 0.0.2");
+            Console.WriteLine("Startup args:");
+            for (int i = 0; i < args.Length; i++)
+                Console.WriteLine($"{i.ToString()}: {args[i]}");
+
             Startup(); // Startup the engine and prepare everything.
 
-            if( args.Length > 1)
+            if (args.Length >= 1)
             {
                 try
                 {
-                    JsrlProgramManager.Instance.RunProgram(JsrlProgram.fromPath(args[1]) , null);
+                    Console.WriteLine("Direct launch mode.");
+                    Console.WriteLine($"Starting now {args[0]}!");
+                    JsrlProgramManager.Instance.RunProgram(JsrlProgram.fromPath(args[0]), null);
                 }
                 catch
                 {

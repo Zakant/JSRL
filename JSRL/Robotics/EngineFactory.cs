@@ -100,7 +100,8 @@ namespace JSRL.Robotics
         public static void Destroy(this Engine engine)
         {
             _engines.Remove(engine);
-            engine.GetValue("Buttons").AsObject().Get("Dispose").Invoke(); // Call Dispose of Buttons class
+            var buttonsClass = engine.GetValue("Buttons").ToObject();
+            ((UserInput.Buttons)buttonsClass).Dispose();
         }
 
         private static string getName(SensorPort port)

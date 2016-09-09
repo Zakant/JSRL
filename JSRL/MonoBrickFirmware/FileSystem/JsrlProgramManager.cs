@@ -12,7 +12,7 @@ namespace MonoBrickFirmware.FileSystem
     public class JsrlProgramManager
     {
         public const string JsrlPath = "/home/root/jsrl";
-        public const string errorPath = "/home/root/jsrl/logs/errors";
+        public const string errorPath = "/home/root/jsrl/logs";
         public const string includePath = "/home/root/jsrl/includes";
 
         public static JsrlProgramManager Instance { get; } = new JsrlProgramManager();

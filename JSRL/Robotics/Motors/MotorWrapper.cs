@@ -17,7 +17,7 @@ namespace JSRL.Robotics.Motors
 
         public void Brake() => _motor.Brake();
 
-        public Motor GetMotor()
+        public Motor getMotor()
         {
             return _motor;
         }

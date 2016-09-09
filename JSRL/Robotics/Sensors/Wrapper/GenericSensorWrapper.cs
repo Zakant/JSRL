@@ -9,7 +9,7 @@ namespace JSRL.Robotics.Sensors.Wrapper
 {
     public abstract class GenericSensorWrapper<T> : ISensorWrapper where T : ISensor
     {
-        public T Sensor { get; protected set; }
+        protected T Sensor { get; set; }
 
         public int Port => (int)Sensor.Port;
 

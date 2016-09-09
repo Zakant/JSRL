@@ -70,8 +70,7 @@ namespace MonoBrickFirmware.FileSystem
             finally
             {
                 engine.Destroy();
-                if (onDone != null)
-                    onDone(exception);
+                onDone?.Invoke(exception);
             }
         }
 

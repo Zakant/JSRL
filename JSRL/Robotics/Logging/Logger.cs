@@ -1,4 +1,5 @@
 ﻿using Jint;
+using Jint.Native;
 using JSRL.Helper;
 using System;
 using System.Collections.Generic;
@@ -50,9 +51,9 @@ namespace JSRL.Robotics.Logging
             _fs.Dispose();
         }
 
-        public void Log(object o)
+        public void Log(JsValue o)
         {
-            _w.WriteLine(o);
+            _w.WriteLine(o.ToString());
             _w.Flush();
         }
     }

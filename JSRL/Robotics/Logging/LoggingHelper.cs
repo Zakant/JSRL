@@ -1,4 +1,5 @@
 ﻿using Jint;
+using Jint.Native;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace JSRL.Robotics.Logging
         {
             var logger = Logger.Create(programName);
             engine.SetValue("Logger", logger);
-            engine.SetValue("log", new Action<object>(logger.Log));
+            engine.SetValue("log", new Action<JsValue>(logger.Log));
             return engine;
         }
 

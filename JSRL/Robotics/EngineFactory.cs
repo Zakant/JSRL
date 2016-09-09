@@ -67,8 +67,8 @@ namespace JSRL.Robotics
             // Sensor modes
             _rootElements.Add("Mode", new
             {
-                ColorMode = new { Ambient = ColorMode.Ambient, Color = ColorMode.Color, Reflection = ColorMode.Reflection, RGB = ColorMode.RGB },
-                GyroMode = new { Angle = GyroMode.Angle, AngularVelocity = GyroMode.AngularVelocity }
+                Color = new { Ambient = ColorMode.Ambient, Color = ColorMode.Color, Reflection = ColorMode.Reflection, RGB = ColorMode.RGB },
+                Gyro = new { Angle = GyroMode.Angle, AngularVelocity = GyroMode.AngularVelocity }
             });
 
             _rootElements.Add("Display", new DisplayWrapper());

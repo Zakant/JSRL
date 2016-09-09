@@ -63,6 +63,9 @@ namespace MonoBrickFirmware.FileSystem
             {
                 exception = ex;
                 LogException(program, ex);
+                Console.WriteLine("Exception!");
+                Console.WriteLine(ex);
+                Console.WriteLine("See error log for more infos!");
             }
             finally
             {

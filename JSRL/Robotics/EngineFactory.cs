@@ -62,7 +62,7 @@ namespace JSRL.Robotics
             _rootElements.Add("MotorC", new MotorWrapper(MotorPort.OutC));
             _rootElements.Add("MotorD", new MotorWrapper(MotorPort.OutD));
 
-            _rootElements.Add("Delay", new Action<int>(HelperFunctions.Wait));
+            _rootElements.Add("delay", new Action<int>(HelperFunctions.Wait));
 
             // Sensor modes
             _rootElements.Add("Mode", new
@@ -76,7 +76,7 @@ namespace JSRL.Robotics
 
         public static Engine CreateEngine()
         {
-            var engine = new Engine(cfg => cfg.AllowClr(typeof(Motor).Assembly).Strict());
+            var engine = new Engine(cfg => cfg.AllowClr(typeof(Motor).Assembly).Strict().DebugMode().AllowDebuggerStatement());
             var buttons = new UserInput.Buttons(_buttonEvents);
 
             foreach (var x in _rootElements)

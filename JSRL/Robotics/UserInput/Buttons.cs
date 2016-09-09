@@ -11,21 +11,23 @@ namespace JSRL.Robotics.UserInput
     {
         ButtonEvents _events;
         List<ButtonEntry> _entries = new List<ButtonEntry>();
-        public Buttons()
+        public Buttons(ButtonEvents events)
         {
-            _events = new ButtonEvents();
-            _events.EnterReleased += () => HandleKey(ButtonTypes.Enter);
-            _events.EscapeReleased += () => HandleKey(ButtonTypes.Escape);
-            _events.UpReleased += () => HandleKey(ButtonTypes.Up);
-            _events.DownReleased += () => HandleKey(ButtonTypes.Down);
-            _events.LeftReleased += () => HandleKey(ButtonTypes.Left);
-            _events.RightReleased += () => HandleKey(ButtonTypes.Right);
+            _events = events;
+            _events.EnterReleased += HandleEnter;
+            _events.EscapeReleased += HandleEscape;
+            _events.UpReleased += HandleUp;
+            _events.DownReleased += HandleDown;
+            _events.LeftReleased += HandleLeft;
+            _events.RightReleased += HandleRight;
         }
 
         ~Buttons()
         {
             Dispose();
         }
+
+        #region Register
 
         public int Enter(JsValue callback)
         {
@@ -68,6 +70,7 @@ namespace JSRL.Robotics.UserInput
             _entries.Add(entrie);
             return entrie.Id;
         }
+        #endregion
 
         public void Remove(int id)
         {
@@ -79,16 +82,28 @@ namespace JSRL.Robotics.UserInput
             _entries.Clear();
         }
 
+        #region Handler
+        private void HandleEnter() => HandleKey(ButtonTypes.Enter);
+        private void HandleEscape() => HandleKey(ButtonTypes.Escape);
+        private void HandleUp() => HandleKey(ButtonTypes.Up);
+        private void HandleDown() => HandleKey(ButtonTypes.Down);
+        private void HandleLeft() => HandleKey(ButtonTypes.Left);
+        private void HandleRight() => HandleKey(ButtonTypes.Right);
+
         private void HandleKey(ButtonTypes type)
         {
             foreach (var e in _entries.Where(x => x.Type == type))
                 e.Callback.Invoke();
         }
-
+        #endregion  
         public void Dispose()
         {
-            _events.Kill();
-            _events.Dispose();
+            _events.EnterReleased -= HandleEnter;
+            _events.EscapeReleased -= HandleEscape;
+            _events.UpReleased -= HandleUp;
+            _events.DownReleased -= HandleDown;
+            _events.LeftReleased -= HandleLeft;
+            _events.RightReleased -= HandleRight;
         }
 
         private class ButtonEntry

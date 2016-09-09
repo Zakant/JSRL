@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JSRL.Robotics.UserInput;
+using MonoBrickFirmware.UserInput;
 
 namespace JSRL.Robotics
 {
@@ -19,6 +20,7 @@ namespace JSRL.Robotics
         private static List<Engine> _engines = new List<Engine>();
 
         private static SensorListner _listener;
+        private static ButtonEvents _buttonEvents;
 
         static EngineFactory()
         {
@@ -51,6 +53,9 @@ namespace JSRL.Robotics
                 }
             };
 
+            //Prepare the button events
+            _buttonEvents = new ButtonEvents();
+
             // All motors
             _rootElements.Add("MotorA", new MotorWrapper(MotorPort.OutA));
             _rootElements.Add("MotorB", new MotorWrapper(MotorPort.OutB));
@@ -72,7 +77,7 @@ namespace JSRL.Robotics
         public static Engine CreateEngine()
         {
             var engine = new Engine(cfg => cfg.AllowClr(typeof(Motor).Assembly).Strict());
-            var buttons = new Buttons();
+            var buttons = new UserInput.Buttons(_buttonEvents);
 
             foreach (var x in _rootElements)
                 engine.SetValue(x.Key, x.Value);
@@ -88,6 +93,8 @@ namespace JSRL.Robotics
         {
             if (_listener != null)
                 _listener.Dispose();
+            if (_buttonEvents != null)
+                _buttonEvents.Dispose();
         }
 
         public static void Destroy(this Engine engine)

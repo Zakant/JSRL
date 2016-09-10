@@ -427,6 +427,7 @@
     <Compile Include="External\Newtonsoft.Json\Utilities\TypeExtensions.cs" />
     <Compile Include="External\Newtonsoft.Json\Utilities\ValidationUtils.cs" />
     <Compile Include="External\Newtonsoft.Json\WriteState.cs" />
+    <Compile Include="Helper\LogHelper.cs" />
     <Compile Include="MonoBrickFirmware\Display\Dialogs\JsrlAboutDialog.cs" />
     <Compile Include="MonoBrickFirmware\Display\Menus\ItemWithJsrlProgramList.cs" />
     <Compile Include="MonoBrickFirmware\Display\Menus\JsrlExecuteItem.cs" />

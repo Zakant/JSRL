@@ -437,6 +437,8 @@
     <Compile Include="Robotics\DisplayWrapper.cs" />
     <Compile Include="Robotics\EngineFactory.cs" />
     <Compile Include="Robotics\HelperFunctions.cs" />
+    <Compile Include="Robotics\Logging\Logger.cs" />
+    <Compile Include="Robotics\Logging\LoggingHelper.cs" />
     <Compile Include="Robotics\Motors\MotorWrapper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -452,6 +454,8 @@
     <Compile Include="Robotics\Threading\IPCHelper.cs" />
     <Compile Include="Robotics\Threading\ThreadingEntry.cs" />
     <Compile Include="Robotics\Threading\ThreadingHelper.cs" />
+    <Compile Include="Robotics\UserInput\Buttons.cs" />
+    <Compile Include="Robotics\UserInput\ButtonTypes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

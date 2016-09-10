@@ -1,5 +1,7 @@
 ﻿using JSRL.Robotics.Debugger;
+using JSRL.Helper;
 using JSRL.Robotics;
+using JSRL.Robotics.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +13,7 @@ namespace MonoBrickFirmware.FileSystem
     public class JsrlProgramManager
     {
         public const string JsrlPath = "/home/root/jsrl";
-        public const string logPath = "/home/root/jsrl/logs";
+        public const string errorPath = "/home/root/jsrl/logs";
         public const string includePath = "/home/root/jsrl/includes";
 
         public static JsrlProgramManager Instance { get; } = new JsrlProgramManager();
@@ -20,8 +22,8 @@ namespace MonoBrickFirmware.FileSystem
         {
             if (!Directory.Exists(JsrlPath))
                 Directory.CreateDirectory(JsrlPath);
-            if (!Directory.Exists(logPath))
-                Directory.CreateDirectory(logPath);
+            if (!Directory.Exists(errorPath))
+                Directory.CreateDirectory(errorPath);
             if (!Directory.Exists(includePath))
                 Directory.CreateDirectory(includePath);
         }
@@ -30,9 +32,7 @@ namespace MonoBrickFirmware.FileSystem
         {
             return Directory.EnumerateFiles(JsrlPath, "*.js").Select(x =>
             {
-                int indexSlash = x.LastIndexOf('/') + 1;
-                int indexDot = x.LastIndexOf('.');
-                return new JsrlProgram(x.Substring(indexSlash, indexDot - indexSlash), x);
+                return JsrlProgram.fromPath(x);
             }).ToList();
         }
 
@@ -59,25 +59,27 @@ namespace MonoBrickFirmware.FileSystem
                 string code = File.ReadAllText(program.Path);
                 if (JsrlDebugger.Instance.isAttached)
                     JsrlDebugger.Instance.prepareEngine(engine);
-                engine.Execute(code); // Running the program here
+                engine.setupLogging(program.Name).Execute(code); // Running the program here
             }
             catch (Exception ex)
             {
                 exception = ex;
                 JsrlDebugger.Instance.SendException(ex);
                 LogException(program, ex);
-
+                Console.WriteLine("Exception!");
+                Console.WriteLine(ex);
+                Console.WriteLine("See error log for more infos!");
             }
             finally
             {
                 engine.Destroy();
-                onDone(exception);
+                onDone?.Invoke(exception);
             }
         }
 
         public void LogException(JsrlProgram program, Exception ex)
         {
-            string target = Path.Combine(logPath + $"{program.Name}.log");
+            string target = LogHelper.getLogPath(errorPath, program.Name, "error");
             File.WriteAllText(target, $"{ex.ToString()}{Environment.NewLine}{ex.Message}{Environment.NewLine}{ex.StackTrace}");
         }
     }

@@ -74,9 +74,9 @@ namespace JSRL.Robotics
             _rootElements.Add("Display", new DisplayWrapper());
         }
 
-        public static Engine CreateEngine()
+        public static Engine CreateEngine(bool enableDebug = false)
         {
-            var engine = new Engine(cfg => cfg.AllowClr(typeof(Motor).Assembly).Strict().DebugMode().AllowDebuggerStatement());
+            var engine = new Engine(cfg => (enableDebug ? cfg.DebugMode().AllowDebuggerStatement() : cfg).AllowClr(typeof(Motor).Assembly).Strict());
             var buttons = new UserInput.Buttons(_buttonEvents);
 
             foreach (var x in _rootElements)

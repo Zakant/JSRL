@@ -52,13 +52,11 @@ namespace MonoBrickFirmware.FileSystem
         public void RunProgram(JsrlProgram program, Action<Exception> onDone)
         {
             // Running the program here
-            var engine = EngineFactory.CreateEngine();
+            var engine = EngineFactory.CreateEngine(JsrlDebugger.Instance.DebugEnabled);
             Exception exception = null;
             try
             {
                 string code = File.ReadAllText(program.Path);
-                if (JsrlDebugger.Instance.isAttached)
-                    JsrlDebugger.Instance.prepareEngine(engine);
                 engine.setupLogging(program.Name).Execute(code); // Running the program here
             }
             catch (Exception ex)

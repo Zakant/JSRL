@@ -1,4 +1,5 @@
 ﻿using Jint;
+using JSRL.Robotics.Network;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,17 +11,15 @@ namespace JSRL.Robotics.Debugger
     {
         public static JsrlDebugger Instance { get; } = new JsrlDebugger();
 
+        public JsrlDebugger()
+        {
+            NetworkService.Instance.ConnectionChanged += HandleConnectionChanged;
+            NetworkService.Instance.DataReceived += HandleMessage;
+        }
+
         public bool isAttached { get; protected set; }
-
-        public void StartListener()
-        {
-
-        }
-
-        public void StopListener()
-        {
-
-        }
+        
+        public bool DebugEnabled { get; protected set; }
 
         public Engine prepareEngine(Engine engine)
         {
@@ -29,7 +28,18 @@ namespace JSRL.Robotics.Debugger
 
         public void SendException(Exception ex)
         {
+            if (NetworkService.Instance.Status == ConnectionStatus.Connected)
+                NetworkService.Instance.Send(new { Target = "Debug", Type = "Exception", Exception = ex });
+        }
 
+        private void HandleConnectionChanged(object sender, ConnectionChangedEventArgs args)
+        {
+
+        }
+
+        private void HandleMessage(object sender, DataReceivedEventArgs args)
+        {
+            if (args.Data.Target != "Debug") return;
         }
     }
 }

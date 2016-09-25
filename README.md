@@ -11,7 +11,7 @@ A JavaScript robotic language designed for the LEGO EV3.
 
 ## What is this
 This is a programming language that is easy-to-learn yet powerfull and designed for the the LEGO EV3, that offers more options then the standard "block based" language but is way easier to lern then JAVA or a .NET language.
-To achive this, JSRL is based upon JavaScript extended with many objects and functions you need to programm a roboter. This whole project is mainly based on the JavaScript Interpreter [JInt](https://github.com/sebastienros/jint) and the [MonoBrick](https://github.com/Larsjep/monoev3) project. Make sure you check both out.
+To achive this, JSRL is based upon JavaScript extended with many objects and functions you need to programm a roboter. This whole project is mainly based on the JavaScript Interpreter [JInt](https://github.com/sebastienros/jint) and the [MonoBrick](https://github.com/Larsjep/monoev3) project. As a json parser a custom version of [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json) is used. Make sure you check them out.
 However even if the programms are written in JavaScript, they are highly extensible by using the interoperability provied by JInt.
 
 ## Getting started
@@ -54,11 +54,11 @@ Their are allways things to improve or create. Such would be:
 
 ## Samples
 ### Simple movement
-```
+```javascript
 MotorA.On(100);
 MotorB.On(100);
 
-Delay(2000);
+delay(2000);
 
 MotorA.Off(100);
 MotorB.Off(100);

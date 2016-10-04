@@ -18,6 +18,7 @@ namespace MonoBrickFirmware.Display.Dialogs
             this.WriteTitle();
             this.WriteTextOnLine($"Version: {Assembly.GetExecutingAssembly().GetName().Version.ToString()}", 0);
             this.WriteTextOnLine("Creator: Christian Wieck", 1);
+            this.DrawCenterButton("Ok", true);
         }
     }
 }

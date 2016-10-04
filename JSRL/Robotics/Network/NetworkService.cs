@@ -96,7 +96,7 @@ namespace JSRL.Robotics.Network
                     DataReceived?.Invoke(this, new DataReceivedEventArgs(data));
                 }
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 new Thread(() =>
                 {

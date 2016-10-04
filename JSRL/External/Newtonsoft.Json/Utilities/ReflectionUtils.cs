@@ -150,7 +150,7 @@ namespace Newtonsoft.Json.Utilities
         {
             return (v != null) ? v.GetType() : null;
         }
-
+#pragma warning disable CS0436 // Typenkonflikte mit importiertem Typ
         public static string GetTypeName(Type t, FormatterAssemblyStyle assemblyFormat, SerializationBinder binder)
         {
             string fullyQualifiedTypeName;
@@ -171,7 +171,9 @@ namespace Newtonsoft.Json.Utilities
 
             switch (assemblyFormat)
             {
+
                 case FormatterAssemblyStyle.Simple:
+
                     return RemoveAssemblyDetails(fullyQualifiedTypeName);
                 case FormatterAssemblyStyle.Full:
                     return fullyQualifiedTypeName;
@@ -179,7 +181,7 @@ namespace Newtonsoft.Json.Utilities
                     throw new ArgumentOutOfRangeException();
             }
         }
-
+#pragma warning restore CS0436 // Typenkonflikte mit importiertem Typ
         private static string RemoveAssemblyDetails(string fullyQualifiedTypeName)
         {
             StringBuilder builder = new StringBuilder();

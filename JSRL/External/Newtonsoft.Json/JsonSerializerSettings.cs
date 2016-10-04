@@ -38,6 +38,7 @@ namespace Newtonsoft.Json
     /// </summary>
     public class JsonSerializerSettings
     {
+#pragma warning disable CS0436 // Typenkonflikte mit importiertem Typ
         internal const ReferenceLoopHandling DefaultReferenceLoopHandling = ReferenceLoopHandling.Error;
         internal const MissingMemberHandling DefaultMissingMemberHandling = MissingMemberHandling.Ignore;
         internal const NullValueHandling DefaultNullValueHandling = NullValueHandling.Include;
@@ -48,6 +49,7 @@ namespace Newtonsoft.Json
         internal const TypeNameHandling DefaultTypeNameHandling = TypeNameHandling.None;
         internal const MetadataPropertyHandling DefaultMetadataPropertyHandling = MetadataPropertyHandling.Default;
         internal const FormatterAssemblyStyle DefaultTypeNameAssemblyFormat = FormatterAssemblyStyle.Simple;
+
         internal static readonly StreamingContext DefaultContext;
 
         internal const Formatting DefaultFormatting = Formatting.None;
@@ -86,6 +88,7 @@ namespace Newtonsoft.Json
         internal ConstructorHandling? _constructorHandling;
         internal TypeNameHandling? _typeNameHandling;
         internal MetadataPropertyHandling? _metadataPropertyHandling;
+#pragma warning restore CS0436 // Typenkonflikte mit importiertem Typ
 
         /// <summary>
         /// Gets or sets how reference loops (e.g. a class referencing itself) is handled.
@@ -178,6 +181,7 @@ namespace Newtonsoft.Json
             set { _metadataPropertyHandling = value; }
         }
 
+#pragma warning disable CS0436 // Typenkonflikte mit importiertem Typ
         /// <summary>
         /// Gets or sets how a type name assembly is written and resolved by the serializer.
         /// </summary>
@@ -187,7 +191,7 @@ namespace Newtonsoft.Json
             get { return _typeNameAssemblyFormat ?? DefaultFormatterAssemblyStyle; }
             set { _typeNameAssemblyFormat = value; }
         }
-
+#pragma warning restore CS0436 // Typenkonflikte mit importiertem Typ
         /// <summary>
         /// Gets or sets how constructors are used during deserialization.
         /// </summary>

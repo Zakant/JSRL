@@ -121,7 +121,9 @@ namespace Newtonsoft.Json.Serialization
             set { _serializer.MetadataPropertyHandling = value; }
         }
 
+#pragma warning disable CS0436 // Typenkonflikte mit importiertem Typ
         public override FormatterAssemblyStyle TypeNameAssemblyFormat
+#pragma warning restore CS0436 // Typenkonflikte mit importiertem Typ
         {
             get { return _serializer.TypeNameAssemblyFormat; }
             set { _serializer.TypeNameAssemblyFormat = value; }

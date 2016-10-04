@@ -45,7 +45,9 @@ namespace Newtonsoft.Json
     public class JsonSerializer
     {
         internal TypeNameHandling _typeNameHandling;
+#pragma warning disable CS0436 // Typenkonflikte mit importiertem Typ
         internal FormatterAssemblyStyle _typeNameAssemblyFormat;
+#pragma warning restore CS0436 // Typenkonflikte mit importiertem Typ
         internal PreserveReferencesHandling _preserveReferencesHandling;
         internal ReferenceLoopHandling _referenceLoopHandling;
         internal MissingMemberHandling _missingMemberHandling;
@@ -157,10 +159,11 @@ namespace Newtonsoft.Json
             }
         }
 
-        /// <summary>
-        /// Gets or sets how a type name assembly is written and resolved by the serializer.
-        /// </summary>
-        /// <value>The type name assembly format.</value>
+#pragma warning disable CS0436 // Typenkonflikte mit importiertem Typ
+                              /// <summary>
+                              /// Gets or sets how a type name assembly is written and resolved by the serializer.
+                              /// </summary>
+                              /// <value>The type name assembly format.</value>
         public virtual FormatterAssemblyStyle TypeNameAssemblyFormat
         {
             get { return _typeNameAssemblyFormat; }
@@ -174,6 +177,7 @@ namespace Newtonsoft.Json
                 _typeNameAssemblyFormat = value;
             }
         }
+#pragma warning restore CS0436 // Typenkonflikte mit importiertem Typ
 
         /// <summary>
         /// Gets or sets how object references are preserved by the serializer.

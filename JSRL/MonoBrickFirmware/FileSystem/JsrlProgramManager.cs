@@ -42,7 +42,7 @@ namespace MonoBrickFirmware.FileSystem
             {
                 File.Delete(program.Path);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }

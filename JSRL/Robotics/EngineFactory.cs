@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JSRL.Robotics.UserInput;
 using MonoBrickFirmware.UserInput;
+using Jint.Native;
 
 namespace JSRL.Robotics
 {
@@ -48,7 +49,7 @@ namespace JSRL.Robotics
                 foreach (var e in _engines)
                 {
                     var old = e.GetValue(name);
-                    e.SetValue(name, "undefined");
+                    e.SetValue(name, new JsValue());
                     e.GetValue("sensorDetached").Invoke(name, old);
                 }
             };

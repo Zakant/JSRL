@@ -15,7 +15,16 @@ namespace MonoBrickFirmware.Display.Menus
 
         protected override List<IChildItem> OnCreateChildList()
         {
-            return JsrlProgramManager.Instance.getPrograms().Select(x => (IChildItem)new JsrlProgramItem(x)).ToList();
+            var programs = JsrlProgramManager.Instance.getPrograms().ToList();
+            if (programs.Count == 0)
+            {
+                new InfoDialog("No programms found!").Show();
+                this.RemoveFocus(this);
+                return new List<IChildItem>(); // Create an empty list and return it.
+            }
+            
+            return programs.Select(x => (IChildItem)new JsrlProgramItem(x)).ToList();
         }
+        
     }
 }

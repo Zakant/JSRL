@@ -32,6 +32,12 @@ namespace JSRL.Robotics.Debugger
                 NetworkService.Instance.Send(new { Target = "Debug", Type = "Exception", Exception = ex });
         }
 
+        public void Log(string data)
+        {
+            if (NetworkService.Instance.Status == ConnectionStatus.Connected)
+                NetworkService.Instance.Send(new { Target = "Debug", Type = "Log", Data = data });
+        }
+
         private void HandleConnectionChanged(object sender, ConnectionChangedEventArgs args)
         {
 

@@ -1,6 +1,7 @@
 ﻿using Jint;
 using Jint.Native;
 using JSRL.Helper;
+using JSRL.Robotics.Debugger;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -55,6 +56,7 @@ namespace JSRL.Robotics.Logging
         {
             _w.WriteLine(o.ToString());
             _w.Flush();
+            JsrlDebugger.Instance.Log(o.ToString());
         }
     }
 }

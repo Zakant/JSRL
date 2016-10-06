@@ -1,5 +1,5 @@
 ﻿using Jint;
-using JSRL.Robotics.Network;
+using JSRL.Network;
 using System;
 using System.Collections.Generic;
 using System.Linq;

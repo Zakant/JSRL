@@ -436,6 +436,9 @@
     <Compile Include="MonoBrickFirmware\Display\Menus\JsrlProgramItem.cs" />
     <Compile Include="MonoBrickFirmware\FileSystem\JsrlProgram.cs" />
     <Compile Include="MonoBrickFirmware\FileSystem\JsrlProgramManager.cs" />
+    <Compile Include="Network\Plugins\NetworkPlugin.cs" />
+    <Compile Include="Network\Plugins\PluginManager.cs" />
+    <Compile Include="Network\Plugins\VersionPlugin.cs" />
     <Compile Include="Robotics\Debugger\JsrlDebugger.cs" />
     <Compile Include="Robotics\DisplayWrapper.cs" />
     <Compile Include="Robotics\EngineFactory.cs" />

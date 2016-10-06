@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using JSRL.Network.Plugins;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +11,7 @@ using System.Threading;
 
 namespace JSRL.Network
 {
-    public class NetworkService
+    public class NetworkService : IDisposable
     {
         public static NetworkService Instance { get; } = new NetworkService();
 
@@ -44,6 +45,14 @@ namespace JSRL.Network
         private JsonSerializer _serializer;
 
         private Thread _readThread;
+
+        private PluginManager _manager;
+
+        private NetworkService()
+        {
+            _manager = new PluginManager();
+        }
+
         public void StartService()
         {
             if (isRunning) throw new InvalidOperationException("Trying to start network service, but it was allready running!");
@@ -104,6 +113,12 @@ namespace JSRL.Network
                     StartService();
                 }).Start();
             }
+        }
+
+        public void Dispose()
+        {
+            StopService();
+            _manager.Dispose();
         }
     }
 }

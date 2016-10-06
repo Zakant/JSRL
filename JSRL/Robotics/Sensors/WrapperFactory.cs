@@ -26,14 +26,10 @@ namespace JSRL.Robotics.Sensors
             var types = ass.GetTypes();
             foreach (var t in types)
             {
-                var attributes = t.GetCustomAttributes(typeof(TargetTypeAttribute), false);
+                var attributes = t.GetCustomAttributes(typeof(TargetTypeAttribute), false).Where(x => x != null).Select(x => (TargetTypeAttribute)x).ToList();
 
-                if (attributes.Length > 0)
-                {
-                    var attribute = (TargetTypeAttribute)attributes[0];
-                    if (attribute != null)
-                        _factories.Add(attribute.Target, (sensor) => (ISensorWrapper)Activator.CreateInstance(t, new[] { sensor }));
-                }
+                foreach (var a in attributes)
+                    _factories.Add(a.Target, (sensor) => (ISensorWrapper)Activator.CreateInstance(t, new[] { sensor }));
             }
         }
 

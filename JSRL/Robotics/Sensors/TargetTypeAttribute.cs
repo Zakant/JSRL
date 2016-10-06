@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JSRL.Robotics.Sensors
 {
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
     public class TargetTypeAttribute : Attribute
     {
         public Type Target { get; protected set; }

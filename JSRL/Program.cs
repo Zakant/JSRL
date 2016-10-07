@@ -78,6 +78,9 @@ namespace JSRL
             EngineFactory.CreateEngine().Execute("var a = 42").Destroy();
             sw.Stop();
             Console.WriteLine($"Engine ready after {sw.ElapsedMilliseconds}ms!");
+            Console.WriteLine("Setting up network");
+            bool running = Network.NetworkService.Instance.isRunning;
+            Console.WriteLine("Done!");
             startupAnim.Stop();
             Lcd.Clear();
         }

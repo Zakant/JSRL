@@ -23,6 +23,16 @@ namespace JSRL.Network.Plugins
                     _plugins[name].Add(plugin);
                 }
             }
+
+            NetworkService.Instance.DataReceived += HandleDataReceived;
+        }
+
+        private void HandleDataReceived(object sender, DataReceivedEventArgs e)
+        {
+            string target = e.Data.Target;
+            if (_plugins.ContainsKey(target))
+                foreach (var p in _plugins[target])
+                    p.HandleMessage(e.Data);
         }
 
         public void Dispose()

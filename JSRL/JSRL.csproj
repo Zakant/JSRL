@@ -229,6 +229,7 @@
     <Compile Include="MonoBrickFirmware\Display\Menus\JsrlProgramItem.cs" />
     <Compile Include="MonoBrickFirmware\FileSystem\JsrlProgram.cs" />
     <Compile Include="MonoBrickFirmware\FileSystem\JsrlProgramManager.cs" />
+    <Compile Include="External\MonoBrickFirmware\Sensors\SensorListenerExt.cs" />
     <Compile Include="Robotics\DisplayWrapper.cs" />
     <Compile Include="Robotics\EngineFactory.cs" />
     <Compile Include="Robotics\HelperFunctions.cs" />

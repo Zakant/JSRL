@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace MonoBrickFirmware.FileSystem
+namespace JsrlFirmware.FileSystem
 {
     public class JsrlProgramManager
     {

@@ -1,11 +1,12 @@
-﻿using MonoBrickFirmware.UserInput;
+﻿using MonoBrickFirmware.Display.Dialogs;
+using MonoBrickFirmware.UserInput;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace MonoBrickFirmware.Display.Dialogs
+namespace JsrlFirmware.Display.Dialogs
 {
     public class JsrlAboutDialog : InfoDialog
     {

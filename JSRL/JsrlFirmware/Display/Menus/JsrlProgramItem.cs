@@ -1,11 +1,12 @@
 ﻿using MonoBrickFirmware.Display.Dialogs;
+using MonoBrickFirmware.Display.Menus;
 using MonoBrickFirmware.FileSystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MonoBrickFirmware.Display.Menus
+namespace JsrlFirmware.Display.Menus
 {
     internal class JsrlProgramItem : ChildItemWithParent
     {

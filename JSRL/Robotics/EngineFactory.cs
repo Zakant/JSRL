@@ -20,7 +20,7 @@ namespace JSRL.Robotics
         private static Dictionary<string, object> _rootElements = new Dictionary<string, object>();
         private static List<Engine> _engines = new List<Engine>();
 
-        private static SensorListner _listener;
+        private static SensorListenerExt _listener;
         private static ButtonEvents _buttonEvents;
 
         static EngineFactory()
@@ -28,7 +28,7 @@ namespace JSRL.Robotics
             foreach (var entry in new[] { SensorPort.In1, SensorPort.In2, SensorPort.In3, SensorPort.In4 }) // Sensor objects
                 _rootElements.Add(getName(entry), WrapperFactory.Instance.CreateWrapper(SensorFactory.GetSensor(entry)));
 
-            _listener = new SensorListner();
+            _listener = new SensorListenerExt();
             _listener.SensorAttached += (sensor) =>
             {
                 var instance = WrapperFactory.Instance.CreateWrapper(sensor);

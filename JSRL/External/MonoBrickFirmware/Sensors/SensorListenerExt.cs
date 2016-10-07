@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace MonoBrickFirmware.Sensors
 {
-    public class SensorListner : IDisposable
+    public class SensorListenerExt : IDisposable
     {
         private SensorDetector detector = new SensorDetector();
         private ManualResetEvent terminate = new ManualResetEvent(false);
@@ -24,11 +24,11 @@ namespace MonoBrickFirmware.Sensors
             remove { detector.SensorDetached -= value; }
         }
 
-        public SensorListner() : this(1000)
+        public SensorListenerExt() : this(1000)
         {
         }
 
-        public SensorListner(int interval)
+        public SensorListenerExt(int interval)
         {
             this.interval = interval;
             thread = new Thread(ListenThread);

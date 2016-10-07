@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MonoBrickFirmware.FileSystem
+namespace JsrlFirmware.FileSystem
 {
     public class JsrlProgram
     {

@@ -1,4 +1,4 @@
-﻿using JSRL.Robotics.Debugger;
+﻿using JSRL.Helper;
 using JSRL.Robotics;
 using JSRL.Robotics.Logging;
 using System;
@@ -6,9 +6,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using JSRL.Helper;
 
-namespace MonoBrickFirmware.FileSystem
+namespace JsrlFirmware.FileSystem
 {
     public class JsrlProgramManager
     {
@@ -42,7 +41,7 @@ namespace MonoBrickFirmware.FileSystem
             {
                 File.Delete(program.Path);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }
@@ -52,8 +51,9 @@ namespace MonoBrickFirmware.FileSystem
         public void RunProgram(JsrlProgram program, Action<Exception> onDone)
         {
             // Running the program here
-            var engine = EngineFactory.CreateEngine(JsrlDebugger.Instance.DebugEnabled);
+            var engine = EngineFactory.CreateEngine();
             Exception exception = null;
+            DateTime now = DateTime.UtcNow;
             try
             {
                 string code = File.ReadAllText(program.Path);
@@ -62,7 +62,6 @@ namespace MonoBrickFirmware.FileSystem
             catch (Exception ex)
             {
                 exception = ex;
-                JsrlDebugger.Instance.SendException(ex);
                 LogException(program, ex);
                 Console.WriteLine("Exception!");
                 Console.WriteLine(ex);

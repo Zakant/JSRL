@@ -8,11 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using MonoBrickFirmware.Display;
-using MonoBrickFirmware.Display.Animation;
-using MonoBrickFirmware.Display.Dialogs;
-using MonoBrickFirmware.Display.Menus;
 using MonoBrickFirmware.FileSystem;
+using JsrlFirmware.FileSystem;
+using MonoBrickFirmware.Display.Menus;
+using JsrlFirmware.Display.Menus;
+using MonoBrickFirmware.Display;
+using JsrlFirmware.Display.Dialogs;
+using MonoBrickFirmware.Display.Animation;
 
 namespace JSRL
 {

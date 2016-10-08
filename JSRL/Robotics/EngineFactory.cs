@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using JSRL.Robotics.UserInput;
 using MonoBrickFirmware.UserInput;
 using Jint.Native;
+using JSRL.Helper;
 
 namespace JSRL.Robotics
 {
@@ -25,6 +26,8 @@ namespace JSRL.Robotics
 
         static EngineFactory()
         {
+            GlobalEvents.ApplicationShutdown += () => Shutdown();
+
             foreach (var entry in new[] { SensorPort.In1, SensorPort.In2, SensorPort.In3, SensorPort.In4 }) // Sensor objects
                 _rootElements.Add(getName(entry), WrapperFactory.Instance.CreateWrapper(SensorFactory.GetSensor(entry)));
 

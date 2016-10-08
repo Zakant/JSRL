@@ -429,9 +429,10 @@
     <Compile Include="External\Newtonsoft.Json\Utilities\TypeExtensions.cs" />
     <Compile Include="External\Newtonsoft.Json\Utilities\ValidationUtils.cs" />
     <Compile Include="External\Newtonsoft.Json\WriteState.cs" />
+    <Compile Include="Helper\GlobalEvents.cs" />
     <Compile Include="Helper\LogHelper.cs" />
     <Compile Include="External\MonoBrickFirmware\Sensors\SensorListenerExt.cs" />
-	<Compile Include="JsrlFirmware\Display\Dialogs\JsrlAboutDialog.cs" />
+    <Compile Include="JsrlFirmware\Display\Dialogs\JsrlAboutDialog.cs" />
     <Compile Include="JsrlFirmware\Display\Menus\ItemWithJsrlProgramList.cs" />
     <Compile Include="JsrlFirmware\Display\Menus\JsrlExecuteItem.cs" />
     <Compile Include="JsrlFirmware\Display\Menus\JsrlProgramItem.cs" />
@@ -439,6 +440,7 @@
     <Compile Include="JsrlFirmware\FileSystem\JsrlProgramManager.cs" />
     <Compile Include="Network\Plugins\NetworkPlugin.cs" />
     <Compile Include="Network\Plugins\PluginManager.cs" />
+    <Compile Include="Network\Plugins\UpdatePlugin.cs" />
     <Compile Include="Network\Plugins\VersionPlugin.cs" />
     <Compile Include="Robotics\Debugger\JsrlDebugger.cs" />
     <Compile Include="Robotics\DisplayWrapper.cs" />

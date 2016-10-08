@@ -1,5 +1,6 @@
 ﻿using JSRL.Helper;
 using JSRL.Robotics;
+using JSRL.Robotics.Debugger;
 using JSRL.Robotics.Logging;
 using System;
 using System.Collections.Generic;
@@ -41,7 +42,7 @@ namespace JsrlFirmware.FileSystem
             {
                 File.Delete(program.Path);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
@@ -51,9 +52,8 @@ namespace JsrlFirmware.FileSystem
         public void RunProgram(JsrlProgram program, Action<Exception> onDone)
         {
             // Running the program here
-            var engine = EngineFactory.CreateEngine();
+            var engine = EngineFactory.CreateEngine(JsrlDebugger.Instance.DebugEnabled);
             Exception exception = null;
-            DateTime now = DateTime.UtcNow;
             try
             {
                 string code = File.ReadAllText(program.Path);
@@ -62,6 +62,7 @@ namespace JsrlFirmware.FileSystem
             catch (Exception ex)
             {
                 exception = ex;
+                JsrlDebugger.Instance.SendException(ex);
                 LogException(program, ex);
                 Console.WriteLine("Exception!");
                 Console.WriteLine(ex);

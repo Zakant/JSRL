@@ -32,7 +32,7 @@ namespace JSRL.Network.Plugins
             string target = e.Data.Target;
             if (_plugins.ContainsKey(target))
                 foreach (var p in _plugins[target])
-                    p.HandleMessage(e.Data);
+                    p.HandleMessage(target, e.Data);
         }
 
         public void Dispose()

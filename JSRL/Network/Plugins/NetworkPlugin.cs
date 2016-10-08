@@ -13,6 +13,6 @@ namespace JSRL.Network.Plugins
         {
         }
 
-        public abstract void HandleMessage(dynamic message);
+        public abstract void HandleMessage(string Target, dynamic message);
     }
 }

@@ -11,7 +11,7 @@ namespace JSRL.Network.Plugins
         {
             TargetNames.Add("Version");
         }
-        public override void HandleMessage(dynamic message)
+        public override void HandleMessage(string TargetName, dynamic message)
         {
             message.Version = this.GetType().Assembly.GetName().Version;
             NetworkService.Instance.Send(message);
